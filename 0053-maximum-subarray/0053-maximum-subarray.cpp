@@ -14,9 +14,9 @@ public:
             if(currsum>maxsum)
             {
                 maxsum=currsum;
-            } 
+            }
+            
         }
         return maxsum;
-        
     }
 };
