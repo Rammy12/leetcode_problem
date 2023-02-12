@@ -44,7 +44,7 @@ class Solution
         int exclude=0+solveMem(n,a,curr+1,prev,dp);
         return dp[curr][prev+1]=max(include,exclude);
     }*/
-    int solvedp(int n,int a[])
+    /*int solvedp(int n,int a[])
     {
         vector<vector<int>>dp(n+1,vector<int>(n+1,0));
         for(int curr=n-1; curr>=0; curr--)
@@ -62,6 +62,28 @@ class Solution
             }
         }
         return dp[0][0];
+    }*/
+    //space optimization
+    int solvedp(int n,int a[])
+    {
+        vector<int>currV(n+1,0);
+        vector<int>next(n+1,0);
+        for(int curr=n-1; curr>=0; curr--)
+        {
+            for(int prev=curr-1; prev>=-1; prev--)
+            {
+                int include=0;
+                //include 
+                if(prev==-1 or a[curr]>a[prev])
+                {
+                    include=1+next[curr+1];
+                }
+                int exclude=0+next[prev+1];
+                currV[prev+1]=max(include,exclude);
+                next=currV;
+            }
+        }
+        return next[0];
     }
     //Function to find length of longest increasing subsequence.
     int longestSubsequence(int n, int a[])
