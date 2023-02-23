@@ -32,7 +32,7 @@ class Solution {
       return ans;
       
   }*/
-  long long solveMem(int dice , int face , int target,vector<vector<long long >>&dp)
+  /*long long solveMem(int dice , int face , int target,vector<vector<long long >>&dp)
   {
       //Base case
       long long ans=0;
@@ -62,12 +62,35 @@ class Solution {
       }
       return dp[dice][target]=ans;
       
+  }*/
+  long long solvetab(int dice , int face , int target)
+  {
+      vector<vector<long long >>dp(dice+1,vector<long long>(target+1,0));
+      dp[0][0]=1;
+      for(int d=1; d<=dice; d++)
+      {
+          for(int t=1; t<=target; t++)
+          {
+              long long ans=0;
+              for(int i=1; i<=face; i++)
+                {
+                    if(t-i>=0)
+                    {
+                        ans=ans+dp[d-1][t-i];
+                    }
+                    
+                }
+                dp[d][t]=ans;
+          }
+      }
+      return dp[dice][target];
   }
     long long noOfWays(int M , int N , int X) {
         // code here
         //return solveRec(N,M,X);
-        vector<vector<long long >>dp(N+1,vector<long long>(X+1,-1));
-        return solveMem(N,M,X,dp);
+        //vector<vector<long long >>dp(N+1,vector<long long>(X+1,-1));
+        //return solveMem(N,M,X,dp);
+        return solvetab(N,M,X);
     }
 };
 
