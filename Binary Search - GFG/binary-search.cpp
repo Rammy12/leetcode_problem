@@ -23,7 +23,7 @@ class Solution {
   }
     int binarysearch(int arr[], int n, int k) {
         // code here
-        int start=0;
+        /*int start=0;
         int end=n-1;
         while(start<=end)
         {
@@ -43,7 +43,8 @@ class Solution {
             }
             
         }
-        return -1;
+        return -1;*/
+        return linearsearch(arr,n,k);
         
     }
 };
